@@ -1,0 +1,5 @@
+streamlit
+selenium
+influxdb_client
+datetime
+time
