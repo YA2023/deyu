@@ -6,8 +6,8 @@ from datetime import datetime
 from time import sleep
 
 # 设置 InfluxDB 连接信息
-# url = "http://119.188.113.120:1088" #外网
-url = "http://192.168.5.3:8086"    #内网
+url = "http://119.188.113.120:1088" #外网
+# url = "http://192.168.5.3:8086"    #内网
 token = "fGJEZfqZaZMUPg2zFQL5nKS-7b4gkmldrBTeqBxFwxWon9OVMhjCzd3rwhTsmxpNOxw8q8CeE4o-ZBnM4BYdCA=="
 org = "DeYuTech"
 bucket = "web_spider"
