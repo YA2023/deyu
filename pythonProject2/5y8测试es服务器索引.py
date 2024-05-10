@@ -11,8 +11,8 @@ password = "deyuES%"
 # 创建Elasticsearch连接
 es = Elasticsearch([f"{host}:{port}"], http_auth=(username, password), scheme="https", verify_certs=False)
 
-# 查询my_excel_2索引中的所有文档
-index_name = "my_excel_2"
+# 查询索引中的所有文档
+index_name = "goods"
 query = {
     "query": {
         "match_all": {}
