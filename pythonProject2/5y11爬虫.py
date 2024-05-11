@@ -13,8 +13,8 @@ if len(sys.argv) < 2:
 live_id = sys.argv[1]
 
 # 设置 InfluxDB 连接信息
-url = "http://192.168.5.3:8086"    #内网
-# url = "http://119.188.113.120:1088" #外网
+# url = "http://192.168.5.3:8086"    #内网
+url = "http://119.188.113.120:1088" #外网
 token = "fGJEZfqZaZMUPg2zFQL5nKS-7b4gkmldrBTeqBxFwxWon9OVMhjCzd3rwhTsmxpNOxw8q8CeE4o-ZBnM4BYdCA=="
 org = "DeYuTech"
 bucket = "web_spider"
@@ -65,7 +65,8 @@ try:
                 if comment_id not in seen_comments:
                     seen_comments.add(comment_id)
                     full_comment_time = f"{datetime.now().strftime('%Y-%m-%d')} {comment_time}"
-                    point = Point("comment").tag("username", username).field("content", comment_content).time(full_comment_time)
+                    # action为1是用户评论
+                    point = Point("user_action").tag("username", username).tag("live_id", live_id).tag("action", 1).field("content", comment_content).time(full_comment_time)
                     write_api.write(bucket=bucket, record=point)
                     print(f"已添加: {username}, {full_comment_time}, {comment_content}")
             except Exception as e:

@@ -12,8 +12,9 @@ password = "deyuES%"
 # 创建Elasticsearch连接
 es = Elasticsearch([f"{host}:{port}"], http_auth=(username, password), scheme="https", verify_certs=False)
 
-# 要删除的索引名称
-index_name = "my_excel_2"
+# 要删除的索引名称    慎用!!!
+# index_name = "orders"   #订单信息
+# index_name = "goods"   #商品信息
 
 # 尝试删除索引
 try:

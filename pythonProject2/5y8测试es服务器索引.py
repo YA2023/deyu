@@ -12,7 +12,8 @@ password = "deyuES%"
 es = Elasticsearch([f"{host}:{port}"], http_auth=(username, password), scheme="https", verify_certs=False)
 
 # 查询索引中的所有文档
-index_name = "goods"
+index_name = "orders"      #订单的
+# index_name = "goods"              #商品的
 query = {
     "query": {
         "match_all": {}
@@ -22,12 +23,11 @@ query = {
 # 发送查询请求并获取结果
 result = es.search(index=index_name, body=query)
 
-# 打印查询结果
-for hit in result['hits']['hits']:
-    print(hit['_source'])
+# # 打印查询结果
+# for hit in result['hits']['hits']:
+#     print(hit['_source'])
 
-# # 发送count请求并获取结果
-# result = es.count(index=index_name, body=query)
-#
-# # 打印索引中的文档数量
-# print(f"索引 {index_name} 中共有 {result['count']} 条文档")
+# 发送count请求并获取结果
+result = es.count(index=index_name, body=query)
+# 打印索引中的文档数量
+print(f"索引 {index_name} 中共有 {result['count']} 条文档")

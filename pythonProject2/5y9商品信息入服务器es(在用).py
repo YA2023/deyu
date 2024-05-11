@@ -4,20 +4,22 @@ from elasticsearch.helpers import bulk
 
 # 假设的列名到英文的映射字典
 column_mapping = {
+    '序号': 'serial_number',
     '商品id': 'product_id',
     '标题': 'title',
     '商品链接': 'product_url',
     'SKUID': 'sku_id',
     'sku名称': 'sku_name',
     'sku备注': 'sku_comment',
-    '高清颜色属性图': 'high_definition_color_attribute_image',
+    # '高清颜色属性图': 'high_definition_color_attribute_image',
     '价格': 'value',
     '库存': 'Inventory',
-    '高清商品主图': 'high_definition_product_main_image'
+    # '高清商品主图': 'high_definition_product_main_image'
+    '商品状态': 'product_status'
 }
 
 # 加载Excel文件
-file_path = 'data/导出商品信息.xlsx'
+file_path = 'E:\千牛商品/掌中宝商品_商品管理_商品列表1245.xlsx'
 df = pd.read_excel(file_path)
 
 # 应用列名映射
@@ -25,6 +27,9 @@ df.rename(columns=column_mapping, inplace=True)
 
 # 检查并补全[商品id, 标题, 商品链接]为空的行
 df[['product_id', 'title', 'product_url']] = df[['product_id', 'title', 'product_url']].ffill()
+# 处理商品状态为空的行
+df['product_status'] = df['product_status'].ffill()
+
 
 # 删除SKUID为空的行
 df.dropna(subset=['sku_id'], inplace=True)
